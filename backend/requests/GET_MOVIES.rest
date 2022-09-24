@@ -1,0 +1,5 @@
+@baseUrl = https://api.themoviedb.org/3/movie
+@apiKey = 9c9077bd3142295d1e23539d5dd2dcbf
+
+## GET TOP RATED MOVIES
+GET {{baseUrl}}/top_rated?api_key={{apiKey}}
