@@ -9,17 +9,32 @@ const app = express()
 app.use('/ingest_movies', moviesRouter)
 app.use(cors())
 
-app.get('/api/movies', (req, res) => {
-  async function sendESRequest() {
-    const body = await client.search({
-      index: 'movies',
-      body: {
-        size: 300,
+app.get('/all', async (request, response) => {
+  const body = await client.search({
+    index: 'movies',
+    body: {
+      size: 100,
+    },
+  })
+  response.json(body.hits.hits)
+})
+
+app.get('/api/movies', async (request, response) => {
+  const body = await client.search({
+    index: 'movies',
+    body: {
+      query: {
+        bool: {
+          must: [
+            {
+              match: { title: request.query.searchQuery },
+            },
+          ],
+        },
       },
-    })
-    res.json(body.hits.hits)
-  }
-  sendESRequest()
+    },
+  })
+  response.json(body.hits.hits)
 })
 
 app.listen(process.env.PORT, () => {
