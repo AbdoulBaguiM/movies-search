@@ -7,13 +7,13 @@ const MovieCard = ({ movie }) => {
       <div className="md:flex-shrink-0">
         <img
           className="md:w-56"
-          src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/nAU74GmpUk7t5iklEp3bufwDq4n.jpg"
-          alt="A Quiet Place movie poster"
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
         />
       </div>
       <div className="flex flex-col flex-grow px-8 py-4 bg-color-333">
         <h3 className="font-bold text-4xl md:text-2xl lg:text-2xl text-gray-200 movie--title">
-          {movie.original_title}
+          {movie.title}
         </h3>
         <span className="movie--year text-xl lg:text-sm lg:mb-4">
           {movie.release_date}
@@ -24,12 +24,12 @@ const MovieCard = ({ movie }) => {
           </p>
         </div>
         <div className="button-container flex justify-between mb-2">
-          <button className="text-lg mr-4 lg:text-sm text-gray-200">
+          <span className="text-lg mr-4 lg:text-sm text-gray-200">
+            {movie.vote_count} Votes
+          </span>
+          <span className="text-lg lg:text-sm font-bold py-2 px-4 rounded text-orange-700">
             {movie.vote_average}
-          </button>
-          <button className="text-lg lg:text-sm font-bold py-2 px-4 rounded bg-orange-200 text-orange-700">
-            Add to List
-          </button>
+          </span>
         </div>
       </div>
     </div>
