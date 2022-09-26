@@ -3,25 +3,21 @@ const axios = require('axios')
 const client = require('../elasticsearch/client')
 
 const moviesRouter = express.Router()
-const URL = `https://api.themoviedb.org/3/movie`
+const IMDbURL = `https://imdb-api.com/en/API/InTheaters`
 
-moviesRouter.get('/top_rated', async (request, response) => {
-  response.json('Retrieving top_rated movies ...')
+moviesRouter.get('/', async (request, response) => {
+  response.json('Retrieving in theaters movies ...')
   try {
     console.log('Processing ...')
 
-    const movies = await axios.get(`${URL}/top_rated`, {
-      headers: {
-        'Content-Type': ['application/json', 'charset=utf-8'],
-      },
-      params: {
-        api_key: process.env.API_KEY,
-      },
-    })
+    const movies = await axios.get(
+      `https://imdb-api.com/en/API/InTheaters/k_2nkocr54`
+    )
 
     console.log('Data retrieved successfuly')
 
-    const results = movies.data.results
+    console.log(movies.data.items)
+    const results = movies.data.items
 
     console.log('Starting data indexation ...')
 
