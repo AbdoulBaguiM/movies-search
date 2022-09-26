@@ -10,9 +10,7 @@ moviesRouter.get('/', async (request, response) => {
   try {
     console.log('Processing ...')
 
-    const movies = await axios.get(
-      `https://imdb-api.com/en/API/InTheaters/k_2nkocr54`
-    )
+    const movies = await axios.get(`${IMDbURL}/${process.env.API_KEY}`)
 
     console.log('Data retrieved successfuly')
 
