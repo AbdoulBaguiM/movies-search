@@ -6,11 +6,13 @@ const getAll = () => {
   return request.then((response) => response.data)
 }
 
-const search = (searchQuery, sortBy) => {
+const search = (searchQuery, sortBy, genres) => {
   const params = {
     searchQuery,
     sortBy,
+    genres,
   }
+
   const request = axios.get('/api/movies', { params })
   return request.then((response) => response.data)
 }

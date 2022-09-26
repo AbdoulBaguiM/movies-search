@@ -1,5 +1,5 @@
-@baseUrl = https://api.themoviedb.org/3/movie
-@apiKey = 9c9077bd3142295d1e23539d5dd2dcbf
+@imdbURL = https://imdb-api.com/en/API/InTheaters
+@apiKey = k_2nkocr54
 
-## GET TOP RATED MOVIES
-GET {{baseUrl}}/top_rated?api_key={{apiKey}}
+## GET IN THEATERS MOVIES
+GET {{imdbURL}}/{{apiKey}}

@@ -23,11 +23,23 @@ app.get('/api/movies', async (request, response) => {
   const body = await client.search({
     index: 'movies',
     body: {
+      sort: [
+        {
+          imDbRating: {
+            order: request.query.sortBy,
+          },
+        },
+      ],
       query: {
         bool: {
           must: [
             {
-              match: { title: request.query.searchQuery },
+              match: {
+                title: request.query.searchQuery,
+              },
+              match: {
+                genres: request.query.genres,
+              },
             },
           ],
         },

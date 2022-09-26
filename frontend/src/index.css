@@ -13,9 +13,7 @@ body {
   background-color: #333;
 }
 
-.movie--year {
-  font-variant-numeric: ordinal;
-  font-weight: 700;
+.movie--genres {
   color: #fff;
   letter-spacing: 0.07em;
   font-family: monospace;
