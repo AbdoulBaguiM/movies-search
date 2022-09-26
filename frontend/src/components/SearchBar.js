@@ -40,8 +40,8 @@ const SearchBar = ({
             onChange={(e) => setSortBy(e.target.value)}
           >
             <option value={null}>Sort By</option>
-            <option value="vote_count">Vote count</option>
-            <option value="vote_average">Vote average</option>
+            <option value="asc">Smallest IMDb rating</option>
+            <option value="desc">Biggest IMDb rating</option>
           </select>
         </div>
         <button onClick={handleSearch}>Submit</button>

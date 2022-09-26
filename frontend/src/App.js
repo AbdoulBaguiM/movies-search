@@ -1,12 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import CheckBoxes from './components/CheckBoxes'
 import MovieCard from './components/MovieCard'
 import SearchBar from './components/SearchBar'
 import movieService from './services/movies'
 
 const App = () => {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [sortBy, setSortBy] = useState('')
+  const [searchQuery, setSearchQuery] = useState(null)
+  const [sortBy, setSortBy] = useState(null)
+  const [checkedCategories, setCheckedCategories] = useState(null)
   const [movies, setMovies] = useState(null)
 
   useEffect(() => {
@@ -18,7 +20,7 @@ const App = () => {
 
   const handleSearch = () => {
     movieService
-      .search(searchQuery, sortBy)
+      .search(searchQuery, sortBy, checkedCategories)
       .then((results) => {
         setMovies(results)
       })
@@ -36,6 +38,10 @@ const App = () => {
           setSortBy={setSortBy}
           setSearchQuery={setSearchQuery}
           handleSearch={handleSearch}
+        />
+        <CheckBoxes
+          checkedCategories={checkedCategories}
+          setCheckedCategories={setCheckedCategories}
         />
         <div className="grid grid-cols-2 gap-4">
           {movies &&
