@@ -7,7 +7,7 @@ import movieService from './services/movies'
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('')
-  const [sortBy, setSortBy] = useState('')
+  const [sortBy, setSortBy] = useState()
   const [checkedCategories, setCheckedCategories] = useState([])
   const [movies, setMovies] = useState(null)
 
@@ -20,7 +20,7 @@ const App = () => {
 
   const handleSearch = () => {
     if (!searchQuery) alert('Fill in the search query')
-    else if (!sortBy) alert('Select the sortBy order')
+    else if (sortBy === '') setSortBy('asc')
     else if (checkedCategories.length === 0)
       alert('Select at least one category')
     else

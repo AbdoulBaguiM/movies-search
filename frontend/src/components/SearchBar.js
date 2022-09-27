@@ -39,7 +39,7 @@ const SearchBar = ({
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
-            <option value="asc">Sort By IMDb rating</option>
+            <option value={''}>Sort By IMDb rating</option>
             <option value="asc">Ascendant</option>
             <option value="desc">Descendant</option>
           </select>
