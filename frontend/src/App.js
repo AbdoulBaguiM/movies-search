@@ -6,9 +6,9 @@ import SearchBar from './components/SearchBar'
 import movieService from './services/movies'
 
 const App = () => {
-  const [searchQuery, setSearchQuery] = useState(null)
-  const [sortBy, setSortBy] = useState(null)
-  const [checkedCategories, setCheckedCategories] = useState(null)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [sortBy, setSortBy] = useState('')
+  const [checkedCategories, setCheckedCategories] = useState([])
   const [movies, setMovies] = useState(null)
 
   useEffect(() => {
@@ -19,42 +19,42 @@ const App = () => {
   }, [])
 
   const handleSearch = () => {
-    movieService
-      .search(searchQuery, sortBy, checkedCategories)
-      .then((results) => {
-        setMovies(results)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    if (!searchQuery) alert('Fill in the search query')
+    else if (!sortBy) alert('Select the sortBy order')
+    else if (checkedCategories.length === 0)
+      alert('Select at least one category')
+    else
+      movieService
+        .search(searchQuery, sortBy, checkedCategories)
+        .then((results) => {
+          setMovies(results)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
   }
 
   return (
-    <>
-      <div className="max-w-[80%] my-0 mx-auto">
-        <SearchBar
-          searchQuery={searchQuery}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          setSearchQuery={setSearchQuery}
-          handleSearch={handleSearch}
-        />
-        <CheckBoxes
-          checkedCategories={checkedCategories}
-          setCheckedCategories={setCheckedCategories}
-        />
-        <div className="grid grid-cols-2 gap-4">
-          {movies &&
-            (movies.length === 0 ? (
-              <span className="text-white text-2xl my-8">
-                No result found, try with other parameters
-              </span>
-            ) : (
-              movies.map((movie) => <MovieCard movie={movie} key={movie._id} />)
-            ))}
-        </div>
+    <div className="max-w-[80%] my-0 mx-auto">
+      <SearchBar
+        searchQuery={searchQuery}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        setSearchQuery={setSearchQuery}
+        handleSearch={handleSearch}
+      />
+      <CheckBoxes setCheckedCategories={setCheckedCategories} />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {movies &&
+          (movies.length === 0 ? (
+            <span className="text-white text-2xl my-8">
+              No result found, try with other parameters
+            </span>
+          ) : (
+            movies.map((movie) => <MovieCard movie={movie} key={movie._id} />)
+          ))}
       </div>
-    </>
+    </div>
   )
 }
 
