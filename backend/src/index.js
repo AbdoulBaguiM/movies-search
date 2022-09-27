@@ -26,7 +26,7 @@ app.get('/api/movies', async (request, response) => {
       sort: [
         {
           imDbRating: {
-            order: request.query.sortBy,
+            order: request.query.order,
           },
         },
       ],
@@ -34,11 +34,13 @@ app.get('/api/movies', async (request, response) => {
         bool: {
           must: [
             {
-              match: {
-                title: request.query.searchQuery,
-              },
-              match: {
+              terms: {
                 genres: request.query.genres,
+              },
+            },
+            {
+              match: {
+                title: request.query.title,
               },
             },
           ],
