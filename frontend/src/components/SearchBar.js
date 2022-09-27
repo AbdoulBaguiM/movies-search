@@ -35,16 +35,21 @@ const SearchBar = ({
         <div className="select">
           <select
             name="sortbBy"
-            className="text-sm outline-none focus:outline-none bg-transparent"
+            className="text-sm outline-none p-2 focus:outline-none bg-transparent"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
-            <option value={null}>Sort By</option>
-            <option value="asc">Smallest IMDb rating</option>
-            <option value="desc">Biggest IMDb rating</option>
+            <option value="asc">Sort By IMDb rating</option>
+            <option value="asc">Ascendant</option>
+            <option value="desc">Descendant</option>
           </select>
         </div>
-        <button onClick={handleSearch}>Submit</button>
+        <button
+          className="h-[50px] p-3 bg-blue-400 text-white rounded"
+          onClick={handleSearch}
+        >
+          Submit
+        </button>
       </div>
     </div>
   )

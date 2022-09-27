@@ -6,10 +6,10 @@ const getAll = () => {
   return request.then((response) => response.data)
 }
 
-const search = (searchQuery, sortBy, genres) => {
+const search = (title, order, genres) => {
   const params = {
-    searchQuery,
-    sortBy,
+    title,
+    order,
     genres,
   }
 

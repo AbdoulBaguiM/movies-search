@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { categories } from '../utils/categories'
 
-const CheckBoxes = ({ checkedCategories, setCheckedCategories }) => {
+const CheckBoxes = ({ setCheckedCategories }) => {
   const [checkedState, setCheckedState] = useState(
     new Array(categories.length).fill(false)
   )
@@ -14,21 +14,20 @@ const CheckBoxes = ({ checkedCategories, setCheckedCategories }) => {
 
     setCheckedState(updatedCheckedState)
 
-    const allChecked = updatedCheckedState.reduce(
-      (prevVal, currentVal, index) => {
-        if (currentVal) {
-          return prevVal + ' ' + categories[index]
-        }
-        return prevVal
-      },
-      ''
-    )
+    const checked = []
 
-    setCheckedCategories(allChecked)
+    updatedCheckedState.map((currentVal, index) => {
+      if (currentVal) {
+        return checked.push(categories[index])
+      }
+      return null
+    })
+
+    setCheckedCategories(checked)
   }
 
   return (
-    <ul className="flex w-full justify-between my-3 text-white">
+    <ul className="grid grid-cols-auto-fill gap-4 my-3 text-white">
       {categories.map((category, index) => {
         return (
           <li key={index}>
@@ -49,11 +48,6 @@ const CheckBoxes = ({ checkedCategories, setCheckedCategories }) => {
           </li>
         )
       })}
-      {/* <li>
-        <div className="toppings-list-item">
-          <div className="right-section">{checkedCategories}</div>
-        </div>
-      </li> */}
     </ul>
   )
 }

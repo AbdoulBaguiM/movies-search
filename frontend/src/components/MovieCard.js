@@ -6,8 +6,8 @@ const MovieCard = ({ movie }) => {
     <div className="w-1/2 md:w-1/2 lg:w-[470px] max-w-4xl rounded  shadow-lg m-4 flex justify-between">
       <div className="md:flex-shrink-0">
         <img
-          className="md:w-56 h-full"
-          src={`https://imdb-api.com/API/ResizeImage?apiKey=k_2nkocr54&size=384x528&url=${movie.image}`}
+          className="sm:w-0 md:w-52 h-full"
+          src={`${movie.image}`}
           alt={movie.title}
         />
       </div>
@@ -16,7 +16,7 @@ const MovieCard = ({ movie }) => {
           {movie.title}
         </h3>
         <span className="movie--genres my-2 text-xl lg:text-sm lg:mb-4">
-          {movie.genres}
+          {movie.genres.join(',')}
         </span>
         <div className="flex-grow">
           <p className="text-xl md:text-base lg:text-base text-gray-100 leading-snug truncate-overflow hover:overflow-y-scroll">
