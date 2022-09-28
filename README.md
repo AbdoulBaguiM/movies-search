@@ -66,7 +66,7 @@ Follow these steps to get the project locally on your machine.
 
 2. Clone the repo by running: 
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/AbdoulBaguiM/movies-search.git
    ```
 3. Edit the `.env` file by filling in your settings (specify the stack version you want to work on, the `ELASTIC_PASSWORD` and `KIBANA_PASSWORD`)
 
