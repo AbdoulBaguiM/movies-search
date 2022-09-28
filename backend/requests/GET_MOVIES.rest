@@ -1,5 +1,0 @@
-@imdbURL = https://imdb-api.com/en/API/InTheaters
-@apiKey = k_2nkocr54
-
-## GET IN THEATERS MOVIES
-GET {{imdbURL}}/{{apiKey}}
